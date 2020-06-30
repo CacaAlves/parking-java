@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import controller.BaseController;
 import controller.MainWindowController;
+import controller.VehicleRegistrationWindowController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -41,5 +42,11 @@ public class ViewFactory {
 
 	public void closeStage(Stage stage) {
 		stage.close();
+	}
+
+	public void showVehicleRegistrationWindow() {
+		BaseController controller = new VehicleRegistrationWindowController(parkingManager, this, 
+				"VehicleRegistrationWindow.fxml");
+		initializeStage(controller);
 	}
 }
