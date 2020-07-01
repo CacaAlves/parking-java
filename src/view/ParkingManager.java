@@ -21,6 +21,7 @@ public class ParkingManager {
 	}
 	
 	public void setUpRows() {
+		vehicles = VehicleServices.getAll();
 		parkingTableView.getItems().clear();
 		for (Vehicle vehicle : vehicles) {
 			TableRow<Vehicle> item = new TableRow<Vehicle>();

@@ -48,14 +48,14 @@ public class MainWindowController extends BaseController implements Initializabl
 
 	@FXML
 	void newVehicleBtnOnAction() {
-//		viewFactory.showVehicleRegistrationWindow();
+		viewFactory.showVehicleRegistrationWindow();
 	}
 
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
 		setUpParkingTableView();
 		setUpContextMenus();
-		setUpMessageSelection();
+		setUpRowSelection();
 		setUpRows();
 	}
 
@@ -74,15 +74,15 @@ public class MainWindowController extends BaseController implements Initializabl
 	private void setUpContextMenus() {
 		payUp.setOnAction(e -> {
 			VehicleServices.payUp(parkingManager.getSelectedVehicle().getLicensePlate());
-			parkingManager.setUpRows();
+			setUpRows();
 		});
 		
 		endParking.setOnAction(e -> {
 			VehicleServices.endParking(parkingManager.getSelectedVehicle().getLicensePlate());
-			parkingManager.setUpRows();
+			setUpRows();
 		});
 	}
-	private void setUpMessageSelection() {
+	private void setUpRowSelection() {
 		parkingTableView.setOnMouseClicked(e -> {
 			Vehicle vehicle = parkingTableView.getSelectionModel().getSelectedItem();
 			if (vehicle != null) {
