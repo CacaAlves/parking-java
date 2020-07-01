@@ -4,6 +4,7 @@ import java.util.List;
 
 import db.DB;
 import model.dao.impl.VehicleDaoJDBC;
+import model.entities.ParkingBill;
 import model.entities.Vehicle;
 import model.entities.VehicleType;
 
@@ -34,5 +35,11 @@ public class VehicleServices {
 	
 	public static void payUp(String licensePlate) {
 		dao.updatePayOut(licensePlate, true);
+	}
+
+	public static Double getBill(Vehicle obj) {
+		ParkingBill bill = new ParkingBill(obj);
+
+		return bill.getBill();
 	}
 }

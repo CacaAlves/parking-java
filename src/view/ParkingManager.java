@@ -1,6 +1,8 @@
 package view;
 
 import java.util.List;
+import java.util.stream.Collectors;
+
 
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
@@ -21,7 +23,21 @@ public class ParkingManager {
 	}
 	
 	public void setUpRows() {
-		vehicles = VehicleServices.getAll();
+		vehicles = VehicleServices.getAll().
+				stream().
+				filter(obj -> !obj.getPaidOut()).
+				collect(Collectors.toList());
+		
+		vehicles.forEach(obj -> {
+			if (obj.getEndDate() != null) {
+				String bill = String.format("R$ %.2f", VehicleServices.getBill(obj));
+				obj.setBill(bill);
+			}
+			else {
+				obj.setBill(null);
+			}
+		});
+		
 		parkingTableView.getItems().clear();
 		for (Vehicle vehicle : vehicles) {
 			TableRow<Vehicle> item = new TableRow<Vehicle>();
@@ -36,4 +52,5 @@ public class ParkingManager {
 	public Vehicle getSelectedVehicle() {
 		return selectedVehicle;
 	}
+
 }

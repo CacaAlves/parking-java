@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="543.0" prefWidth="856.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="521.0" prefWidth="944.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label alignment="CENTER" layoutX="14.0" prefHeight="57.0" prefWidth="601.0" text="Parking " AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="0.0">
          <font>
@@ -18,9 +18,10 @@
         <columns>
           <TableColumn fx:id="plateCol" prefWidth="142.0" text="License plate" />
           <TableColumn fx:id="vehicleCol" prefWidth="100.0" text="Vehicle" />
-            <TableColumn fx:id="startDateCol" prefWidth="164.0" text="Start date" />
-            <TableColumn fx:id="endDateCol" prefWidth="200.0" text="End date" />
-            <TableColumn fx:id="ownerNameCol" prefWidth="221.0" text="Owner's name" />
+            <TableColumn fx:id="startDateCol" prefWidth="148.0" text="Start date" />
+            <TableColumn fx:id="endDateCol" prefWidth="134.0" text="End date" />
+            <TableColumn fx:id="ownerNameCol" prefWidth="207.0" text="Owner's name" />
+            <TableColumn fx:id="billCol" prefWidth="207.0" text="Bill" />
         </columns>
       </TableView>
       <Button layoutX="14.0" layoutY="89.0" mnemonicParsing="false" onAction="#newVehicleBtnOnAction" text="New vehicle" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="89.0" />

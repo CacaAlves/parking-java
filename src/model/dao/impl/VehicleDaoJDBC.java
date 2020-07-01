@@ -51,7 +51,11 @@ public class VehicleDaoJDBC implements VehicleDao {
 	public void updateEndDate(String licensePlate) {
 		PreparedStatement ps = null;
 		try {
-			ps = conn.prepareStatement("UPDATE vehicle " + "SET end_date = ? " + "WHERE license_plate = ?");
+			ps = conn.prepareStatement(
+					"UPDATE vehicle " +
+					"SET end_date = ? " +
+					"WHERE license_plate = ?"
+			);
 			ps.setTimestamp(1, new Timestamp(new Date().getTime()));
 			ps.setString(2, licensePlate);
 			ps.executeUpdate();
@@ -82,6 +86,7 @@ public class VehicleDaoJDBC implements VehicleDao {
 					obj.setEndDate(endDate);
 				}
 				obj.setOwnerName(rs.getString("owner_name"));
+				obj.setPaidOut(rs.getBoolean("paid_out"));
 				vehicles.add(obj);
 			}
 		} catch (SQLException e) {
@@ -112,6 +117,7 @@ public class VehicleDaoJDBC implements VehicleDao {
 					obj.setEndDate(endDate);
 				}
 				obj.setOwnerName(rs.getString("owner_name"));
+				obj.setPaidOut(rs.getBoolean("paid_out"));
 				return obj;
 			}
 			return null;

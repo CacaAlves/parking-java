@@ -9,10 +9,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.util.Callback;
 import model.entities.Vehicle;
 import model.entities.VehicleType;
 import model.services.VehicleServices;
@@ -20,10 +18,10 @@ import view.ParkingManager;
 import view.ViewFactory;
 
 public class MainWindowController extends BaseController implements Initializable {
-	
+
 	private MenuItem endParking = new MenuItem("end parking");
 	private MenuItem payUp = new MenuItem("pay up");
-	
+
 	public MainWindowController(ParkingManager parkingManager, ViewFactory viewFactory, String fxmlName) {
 		super(parkingManager, viewFactory, fxmlName);
 	}
@@ -47,6 +45,9 @@ public class MainWindowController extends BaseController implements Initializabl
 	private TableColumn<Vehicle, String> ownerNameCol;
 
 	@FXML
+	private TableColumn<Vehicle, String> billCol;
+
+	@FXML
 	void newVehicleBtnOnAction() {
 		viewFactory.showVehicleRegistrationWindow();
 	}
@@ -59,15 +60,14 @@ public class MainWindowController extends BaseController implements Initializabl
 		setUpRows();
 	}
 
-
-
 	private void setUpParkingTableView() {
 		plateCol.setCellValueFactory(new PropertyValueFactory<Vehicle, String>("licensePlate"));
 		vehicleCol.setCellValueFactory(new PropertyValueFactory<Vehicle, VehicleType>("type"));
 		startDateCol.setCellValueFactory(new PropertyValueFactory<Vehicle, Date>("startDate"));
 		endDateCol.setCellValueFactory(new PropertyValueFactory<Vehicle, Date>("endDate"));
 		ownerNameCol.setCellValueFactory(new PropertyValueFactory<Vehicle, String>("ownerName"));
-		
+		billCol.setCellValueFactory(new PropertyValueFactory<Vehicle, String>("bill"));
+
 		parkingTableView.setContextMenu(new ContextMenu(payUp, endParking));
 	}
 
@@ -76,12 +76,16 @@ public class MainWindowController extends BaseController implements Initializabl
 			VehicleServices.payUp(parkingManager.getSelectedVehicle().getLicensePlate());
 			setUpRows();
 		});
-		
+
 		endParking.setOnAction(e -> {
-			VehicleServices.endParking(parkingManager.getSelectedVehicle().getLicensePlate());
-			setUpRows();
+			if (parkingManager.getSelectedVehicle().getEndDate() == null) {
+				VehicleServices.endParking(parkingManager.getSelectedVehicle().getLicensePlate());
+				setUpRows();
+			}
 		});
+
 	}
+
 	private void setUpRowSelection() {
 		parkingTableView.setOnMouseClicked(e -> {
 			Vehicle vehicle = parkingTableView.getSelectionModel().getSelectedItem();
@@ -90,10 +94,10 @@ public class MainWindowController extends BaseController implements Initializabl
 			}
 		});
 	}
-	
+
 	private void setUpRows() {
 		parkingManager.setParkingTableView(parkingTableView);
 		parkingManager.setUpRows();
 	}
-	
+
 }

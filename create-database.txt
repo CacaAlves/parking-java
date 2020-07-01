@@ -5,8 +5,8 @@ use parking;
 CREATE TABLE vehicle(
     license_plate varchar(10),
     vehicle_type varchar(10) NOT NULL,
-    start_date timestamp NOT NULL,
-    end_date timestamp NULL DEFAULT NULL,
+    start_date datetim NOT NULL,
+    end_date datetime NULL DEFAULT NULL,
     owner_name varchar(20),
     paid_out bool DEFAULT FALSE,
     PRIMARY KEY (license_plate)
