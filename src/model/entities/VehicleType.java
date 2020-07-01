@@ -1,6 +1,6 @@
 package model.entities;
 
-public enum VehicleTypes {
+public enum VehicleType {
 	CAR,
 	MOTORCYCLE,
 	TRUCK,

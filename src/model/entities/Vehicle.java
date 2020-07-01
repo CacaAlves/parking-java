@@ -4,14 +4,14 @@ import java.util.Date;
 
 public class Vehicle {
 	private String licensePlate;
-	private VehicleTypes type;
+	private VehicleType type;
 	private Date startDate;
 	private Date endDate;
 	private String ownerName;
 	
 	public Vehicle() {}
 	
-	public Vehicle(String licensePlate, VehicleTypes type, Date startDate, Date endDate, String ownerName) {
+	public Vehicle(String licensePlate, VehicleType type, Date startDate, Date endDate, String ownerName) {
 		super();
 		this.licensePlate = licensePlate;
 		this.type = type;
@@ -25,10 +25,10 @@ public class Vehicle {
 	public void setLicensePlate(String licensePlate) {
 		this.licensePlate = licensePlate;
 	}
-	public VehicleTypes getType() {
+	public VehicleType getType() {
 		return type;
 	}
-	public void setType(VehicleTypes type) {
+	public void setType(VehicleType type) {
 		this.type = type;
 	}
 	public Date getStartDate() {
@@ -49,5 +49,13 @@ public class Vehicle {
 	public void setOwnerName(String ownerName) {
 		this.ownerName = ownerName;
 	}
+
+	@Override
+	public String toString() {
+		return "Vehicle [licensePlate=" + licensePlate + ", type=" + type + ", startDate=" + startDate + ", endDate="
+				+ endDate + ", ownerName=" + ownerName + "]";
+	}
+
+	
 	
 }

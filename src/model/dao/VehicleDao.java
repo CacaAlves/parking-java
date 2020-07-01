@@ -7,8 +7,8 @@ import model.entities.Vehicle;
 public interface VehicleDao {
 	
 	void insert(Vehicle obj);
-	void update(Vehicle obj);
-	void deleteById(Integer id);
-	Vehicle findById(Integer id);
+	void updateEndDate(String licensePlate);
+	void updatePayOut(String licensePlate, boolean payOut);
+	Vehicle findByLicensePlate(String licensePlate);
 	List<Vehicle> findAll();
 }

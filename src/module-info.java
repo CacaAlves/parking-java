@@ -5,6 +5,7 @@ module Parking {
 	requires javafx.web;
 	requires javafx.base;
 	requires java.sql;
+	requires mysql.connector.java;
 	
 	opens application;
 	opens view;

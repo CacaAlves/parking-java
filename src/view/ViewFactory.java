@@ -20,10 +20,12 @@ public class ViewFactory {
 	
 	public void showMainWindow() {
 		BaseController controller = new MainWindowController(parkingManager, this, "MainWindow.fxml");
-		initializeStage(controller);
+		Stage stage = initializeStage(controller);
+		 stage.setMaximized(true);
+		
 	}
 
-	private void initializeStage(BaseController controller) {
+	private Stage initializeStage(BaseController controller) {
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(controller.getFxmlName()));
 		fxmlLoader.setController(controller);
 		Parent parent;
@@ -31,13 +33,14 @@ public class ViewFactory {
 			parent = fxmlLoader.load();
 		} catch (IOException e) {
 			e.printStackTrace();
-			return;
+			return null;
 		}
 
 		Scene scene = new Scene(parent);
 		Stage stage = new Stage();
 		stage.setScene(scene);
 		stage.show();
+		return stage;
 	}
 
 	public void closeStage(Stage stage) {
